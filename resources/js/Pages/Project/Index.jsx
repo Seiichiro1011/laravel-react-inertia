@@ -1,5 +1,5 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { Head } from "@inertiajs/react";
+import { Head, Link } from "@inertiajs/react";
 
 export default function Index({ auth, projects }) {
   return (
@@ -32,15 +32,20 @@ export default function Index({ auth, projects }) {
                   <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                     <td className="px-3 py-2">{project.id}</td>
                     <td className="px-3 py-2">
-                      <img src={project.image_path}/>
+                      <img src={project.image_path} style={{width:60}}/>
                     </td>
                     <td className="px-3 py-2">{project.name}</td>
                     <td className="px-3 py-2">{project.status}</td>
                     <td className="px-3 py-2">{project.created_at}</td>
-                    <td className="px-3 py-2">{project.due_date}</td>
-                    <td className="px-3 py-2">{project.createdBy.name}</td>
-                    <td className="px-3 py-2">
-
+                    <td className="px-3 py-2 text-nowrap">{project.due_date}</td>
+                    <td className="px-3 py-2 text-nowrap">{project.createdBy.name}</td>
+                    <td className="px-3 py-2 text-nowrap">
+                      <Link href={route('project.edit',project.id)} className="font-medium text-blue-600 dark::text-blue-500 hover:underline mx-1">
+                        Edit
+                      </Link>
+                      <Link href={route('project.destroy',project.id)} className="font-medium text-red-600 dark::text-red-500 hover:underline mx-1">
+                        Delete
+                      </Link>
                     </td>
                   </tr>
                   ))}
